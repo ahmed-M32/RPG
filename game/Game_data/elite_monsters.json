@@ -1,0 +1,25 @@
+[
+	{
+		"name": "necromancer",
+		"stats": {
+			"hp": 100,
+			"atk": 10
+		},
+		"sprite": {
+			"IDLE": "necromancer/Necromancer_idle.png",
+			"HURT" : "necromancer/Necromancer_hurt.png"
+		},
+		"dimensions": {
+			"width": 158,
+			"height": 128,
+			"scaleX": 3,
+			"scaleY": 4
+		},
+		"frameCounts": {
+			"IDLE": 8,
+			"ATTACK": 8,
+			"DEAD": 6,
+			"HURT": 5
+		}
+	}
+]

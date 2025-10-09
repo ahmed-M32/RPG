@@ -1,0 +1,26 @@
+{
+	"sprite": {
+		"IDLE": "Samurai/Idle.png",
+		"ATTACK": "Samurai/Attack_1.png",
+		"DEAD": "Samurai/Dead.png",
+		"HURT": "Samurai/Hurt.png",
+		"SPRINT" :"Samurai/Run.png"
+	},
+	"frameCounts": {
+		"IDLE": 6,
+		"ATTACK": 6,
+		"DEAD": 6,
+		"HURT": 4,
+		"SPRINT":8
+	},
+	"dimensions": {
+		"width": 128,
+		"height": 128,
+		"scaleX": 2,
+		"scaleY": 2
+	}, 
+	"stats": {
+		"hp":100,
+		"atk":10
+	}
+}

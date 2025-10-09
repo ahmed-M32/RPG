@@ -1,0 +1,20 @@
+[
+	{
+		"name": "slime",
+		"stats": {
+			"hp": 10,
+			"atk": "5"
+		}
+		,"sprite":{}
+	},
+	{
+		"name": "goblin",
+		"stats": {
+			"hp": 10,
+			"atk": "5"
+		},
+		"sprite": {
+			
+		}
+	}
+]

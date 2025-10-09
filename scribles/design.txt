@@ -1,0 +1,60 @@
+class main menu page :
+    button -> go to the main area
+
+
+
+
+
+
+class main area :
+    button -> levels page
+    button -> dungeons page
+    button -> store (maybe)
+    button -> inventory
+
+
+
+
+class levels :
+    needs a good equation for generating monsters 
+    take some input and outputs the level data acording to the input
+
+class Game:
+
+    inventory
+    player 
+    game state saver
+
+
+
+
+
+class inventory :    
+     item array
+
+
+class player
+
+
+class level enviroment:
+
+
+
+
+class item:
+    weapon
+
+class effect:
+    -> weapon effect
+    -> spell effect
+
+
+
+class manager:
+    has the game and manages the cycle
+
+
+class save manager :
+    takes game state and save it and load it from local
+
+
