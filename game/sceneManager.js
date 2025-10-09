@@ -16,7 +16,6 @@ export class SceneManager {
 			el.classList.remove("active");
 		});
 
-		// support both sync and async scene factories
 		let html = this.scenes[sceneName]();
 		if (html instanceof Promise) {
 			html = await html;
