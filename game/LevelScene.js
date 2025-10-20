@@ -2,6 +2,7 @@ import { Entitiy } from "./Entity.js";
 import { Player } from "./Player.js";
 
 const BASE_PATH = "../assets/";
+const floatingTexts = [];
 
 export class LevelScene {
 	constructor(data) {
@@ -38,13 +39,13 @@ export class LevelScene {
 				1,
 				monster.stats,
 				"necromancer",
-				100,
 				monster.sprite,
 				monster.dimensions.width,
 				monster.dimensions.height,
 				monster.dimensions.scaleX,
 				monster.dimensions.scaleY,
-				monster.frameCounts
+				monster.frameCounts,
+				floatingTexts
 			);
 			this.enemyList.push(enemy);
 		});
@@ -78,7 +79,7 @@ export class LevelScene {
 
 		if (this.player) {
 			this.player.update();
-			this.player.render(this.ctx);
+			this.player.render(this.ctx, this.canva.width);
 
 			this.enemyList.forEach((monster) => {
 				monster.update();
@@ -116,6 +117,11 @@ export class LevelScene {
 
 				monster.render(this.ctx);
 			});
+			floatingTexts.forEach((ft, i) => {
+				ft.update();
+				ft.draw(this.ctx);
+				if (ft.isDead()) floatingTexts.splice(i, 1);
+			});
 		}
 
 		requestAnimationFrame(() => this.gameLoop());
@@ -124,7 +130,6 @@ export class LevelScene {
 	playerAtk() {
 		if (!this.selectedEnemy) {
 			console.log("select an enemy first");
-			
 		}
 		this.player.attack(this.selectedEnemy);
 	}

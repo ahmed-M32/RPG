@@ -1,8 +1,10 @@
 import { SpriteRenderer } from "./spriteRenderer.js";
+import { HPBar } from "./HPbar.js";
 
 export class Player {
-	constructor( lvl, name, stats, sprite, width, height, scaleX, scaleY,frames) {
+	constructor(lvl, name, stats, sprite, width, height, scaleX, scaleY, frames) {
 		this.hp = stats.hp;
+		this.maxHp = stats.hp;
 		this.lvl = lvl;
 		this.name = name;
 		this.stats = stats;
@@ -12,7 +14,7 @@ export class Player {
 		this.height = height;
 		this.scaleX = scaleX;
 		this.scaleY = scaleY;
-		this.frames =frames
+		this.frames = frames;
 
 		this.x = 100;
 		this.y = 300;
@@ -23,26 +25,37 @@ export class Player {
 			this.height,
 			6,
 			this.scaleX,
-			this.scaleY,frames,this.x,this.y
+			this.scaleY,
+			frames,
+			this.x,
+			this.y
 		);
+
+		this.hpBar = new HPBar(this.maxHp, "#2ecc71", 400, 14);
 	}
+
 	takeDamage(dmg) {
-		this.hp -= dmg;
+		this.hp = Math.max(0, this.hp - dmg);
+		this.hpBar.update(this.hp);
+		this.renderer.setState("HURT");
 	}
+
 	attack(target) {
-		console.log(target);
-		console.log(this.stats);
-		
-		target.stats.hp -= this.stats.atk;
-		this.renderer.handleAttack(this,target,20)
-		}
+		target.takeDamage(this.stats.atk);
+		this.renderer.handleAttack(this, target, 20);
+	}
+
 	isDead() {
-		return hp <= 0;
+		return this.hp <= 0;
 	}
-	render(ctx) {
+
+	render(ctx, canvasWidth) {
 		this.renderer.draw(ctx, this.x, this.y);
+		this.hpBar.draw(ctx, canvasWidth / 2, 50, true);
 	}
+
 	update() {
 		this.renderer.update();
+		this.hpBar.update(this.hp);
 	}
 }
