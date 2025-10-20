@@ -8,7 +8,6 @@ export async function getData(url) {
 
 
         return data
-		// You could pass this to your LevelScene or Renderer
 	} catch (error) {
 		console.error("Error loading JSON:", error);
 	}
