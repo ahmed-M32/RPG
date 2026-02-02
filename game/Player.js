@@ -1,61 +1,39 @@
 import { SpriteRenderer } from "./spriteRenderer.js";
 import { HPBar } from "./HPbar.js";
+import { Entitiy } from "./Entity.js";
 
-export class Player {
-	constructor(lvl, name, stats, sprite, width, height, scaleX, scaleY, frames) {
-		this.hp = stats.hp;
-		this.maxHp = stats.hp;
-		this.lvl = lvl;
-		this.name = name;
-		this.stats = stats;
-		this.sprite = sprite;
-		this.states = {};
-		this.width = width;
-		this.height = height;
-		this.scaleX = scaleX;
-		this.scaleY = scaleY;
-		this.frames = frames;
+export class Player extends Entitiy {
+    constructor(lvl, stats, name, sprite, width, height, x, y, scaleX, scaleY, frames, speed, dmg) {
+        super(lvl, stats, name, sprite, width, height, x, y, scaleX, scaleY, frames, speed, dmg);
+        this.states = {};
 
-		this.x = 100;
-		this.y = 300;
+        this.hpBar = new HPBar(this.maxHp, "#2ecc71", 400, 14);
+    }
 
-		this.renderer = new SpriteRenderer(
-			this.sprite,
-			this.width,
-			this.height,
-			6,
-			this.scaleX,
-			this.scaleY,
-			frames,
-			this.x,
-			this.y
-		);
+    takeDamage(dmg) {
+        this.hp = Math.max(0, this.hp - dmg);
+        this.hpBar.update(this.hp);
+        this.renderer.setState("HURT");
+    }
 
-		this.hpBar = new HPBar(this.maxHp, "#2ecc71", 400, 14);
-	}
+    attack(target) {
 
-	takeDamage(dmg) {
-		this.hp = Math.max(0, this.hp - dmg);
-		this.hpBar.update(this.hp);
-		this.renderer.setState("HURT");
-	}
+        this.renderer.handleAttack(this, target, 30);
+        target.takeDamage(this.stats.atk);
+        console.log(this.stats)
+    }
 
-	attack(target) {
-		target.takeDamage(this.stats.atk);
-		this.renderer.handleAttack(this, target, 20);
-	}
+    isDead() {
+        return this.hp <= 0;
+    }
 
-	isDead() {
-		return this.hp <= 0;
-	}
+    render(ctx, canvasWidth) {
+        this.renderer.draw(ctx, this.x, this.y);
+        this.hpBar.draw(ctx, canvasWidth / 2, 50, true);
+    }
 
-	render(ctx, canvasWidth) {
-		this.renderer.draw(ctx, this.x, this.y);
-		this.hpBar.draw(ctx, canvasWidth / 2, 50, true);
-	}
-
-	update() {
-		this.renderer.update();
-		this.hpBar.update(this.hp);
-	}
+    update() {
+        this.renderer.update();
+        this.hpBar.update(this.hp);
+    }
 }

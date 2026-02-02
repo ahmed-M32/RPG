@@ -1,45 +1,48 @@
-
-
-
 @font-face {
-  font-family: "pixelFont";
-  src: url("../assets/font/Pixelart_Serif_Font_v02_by_ReffPixels/PixelSerif_16px_v02.ttf") format("truetype");
-  font-weight: normal;
-  font-style: normal;
+    font-family: "pixelFont";
+    src: url("../assets/font/Pixelart_Serif_Font_v02_by_ReffPixels/PixelSerif_16px_v02.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
 }
 
 body {
-  font-family: "pixelFont", sans-serif;
+    font-family: "pixelFont", sans-serif;
 }
+
 body {
-  text-align: center;
-  background: #111;
-  color: white;
+    text-align: center;
+    background: #111;
+    color: white;
 }
 
 .scene {
-  display: none;
+    display: none;
 }
 
 .scene.active {
-  display: block;
+    display: block;
 }
 
 
 
 .pop-up-off {
-  display: none;
+    display: none;
 }
 
 
 .sprite {
-  width: 64px;
-  height: 64px;
-  background: url("spritesheet.png") 0 0;
-  animation: play 1s steps(4) infinite;
+    width: 64px;
+    height: 64px;
+    background: url("spritesheet.png") 0 0;
+    animation: play 1s steps(4) infinite;
 }
 
 @keyframes play {
-  from { background-position: 0 0; }
-  to   { background-position: -256px 0; }
+    from {
+        background-position: 0 0;
+    }
+
+    to {
+        background-position: -256px 0;
+    }
 }
